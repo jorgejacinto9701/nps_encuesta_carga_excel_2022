@@ -517,6 +517,7 @@ public class GeneralModel {
 			// log.info(pstm);
 			contador = pstm.executeUpdate();
 		} catch (Exception e) {
+			e.printStackTrace();
 			log.info(e.getMessage());
 		} finally {
 			try {
@@ -617,6 +618,7 @@ public class GeneralModel {
 				data.add(rs.getInt(1));
 			}
 		} catch (Exception e) {
+			e.printStackTrace();
 			log.info(e.getMessage());
 		} finally {
 			try {
@@ -643,7 +645,7 @@ public class GeneralModel {
 			pstm.setString(3, bean.getGrupo());
 			pstm.setString(4, bean.getModalidad());
 			pstm.setString(5, bean.getTipoclase());
-			// log.info(pstm);
+			System.out.println(pstm);
 			rs = pstm.executeQuery();
 			if (rs.next()) {
 				return rs.getInt(1);

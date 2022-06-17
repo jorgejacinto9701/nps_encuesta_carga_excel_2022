@@ -9,8 +9,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFRow;
@@ -29,7 +27,6 @@ import www.cibertec.encuesta.util.JLibreria;
 
 public class ExcelModel {
 
-	private static final Log log = LogFactory.getLog(ExcelModel.class);
 
 	public String verificaHorario(String file) {
 		StringBuilder salida = new StringBuilder("Es Correcto");
@@ -245,7 +242,7 @@ public class ExcelModel {
 			}
 
 		} catch (Exception e) {
-			log.info(e.getMessage());
+			System.out.println(e.getMessage());
 		}
 		return lstaHorarios;
 
@@ -344,13 +341,13 @@ public class ExcelModel {
 			}
 
 		} catch (FileNotFoundException e) {
-			log.info(e.getMessage());
+			System.out.println(e.getMessage());
 			return "FileNotFoundException";
 		} catch (IOException e) {
-			log.info(e.getMessage());
+			System.out.println(e.getMessage());
 			return "IOException";
 		} catch (Exception e) {
-			log.info(e.getMessage());
+			System.out.println(e.getMessage());
 			return "Exception";
 		}
 
@@ -383,17 +380,17 @@ public class ExcelModel {
 
 					int idCarrera = modelCarrera.insertaVerificacionCarrera(obj);
 					if (idCarrera == -1) {
-						// log.info("NO existe carrera -->" + fila);
+						// System.out.println("NO existe carrera -->" + fila);
 					}
 				}
 			}
 		} catch (Exception e) {
-			log.info(e.getMessage());
+			System.out.println(e.getMessage());
 		}
 	}
 
 	public void cargaAlumoExtension(String file) {
-		log.info("En Carga Alumno Extension");
+		System.out.println("En Carga Alumno Extension");
 		GeneralModel modelAlumno = new GeneralModel();
 		int fila = 0;
 		try {
@@ -408,7 +405,7 @@ public class ExcelModel {
 				XSSFRow row = (XSSFRow) rowIterator.next();
 				fila++;
 				if (fila > 1) {
-					log.info("fila--> " + fila);
+					System.out.println("fila--> " + fila);
 
 					idAlumno = row.getCell(0).getStringCellValue();
 					
@@ -481,21 +478,21 @@ public class ExcelModel {
 
 					int insertados = modelAlumno.insertaExtension(a);
 					if (insertados == -2) {
-						log.info("Ya existe -->" + fila);
+						System.out.println("Ya existe -->" + fila);
 					}
 				}
 				if (fila % 10000 == 0) {
-					log.info("fila--> " + fila);
+					System.out.println("fila--> " + fila);
 				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			log.info(e.getMessage());
+			System.out.println(e.getMessage());
 		}
 	}
 
 	public void cargaAlumoAcademico(String file) {
-		log.info("En Carga Alumno Academico");
+		System.out.println("En Carga Alumno Academico");
 		GeneralModel modelAlumno = new GeneralModel();
 		SimpleDateFormat sdf_1 = new SimpleDateFormat("dd/MM/yyyy");
 		SimpleDateFormat sdf_2 = new SimpleDateFormat("yyyy-MM-dd");
@@ -513,7 +510,7 @@ public class ExcelModel {
 				XSSFRow row = (XSSFRow) rowIterator.next();
 				fila++;
 				if (fila > 1) {
-					log.info("fila--> " + fila);
+					System.out.println("fila--> " + fila);
 
 					if (row.getCell(0).getCellType() == HSSFCell.CELL_TYPE_NUMERIC) {
 						idAlumno = String.valueOf((int) row.getCell(0).getNumericCellValue()).trim();
@@ -543,14 +540,18 @@ public class ExcelModel {
 					ciudad = JLibreria.toMinusculaYPrimerCaracterMayuscula(ciudad);
 					
 					facultad = row.getCell(10).getStringCellValue();
-					semestre = row.getCell(11).getStringCellValue();
-					
+
+					if (row.getCell(11).getCellType() == HSSFCell.CELL_TYPE_NUMERIC) {
+						semestre = String.valueOf((int) row.getCell(11).getNumericCellValue()).trim();
+					} else {
+						semestre = row.getCell(11).getStringCellValue();
+					}
+
 					tipo = row.getCell(12).getStringCellValue();
 					tipo = JLibreria.toMinusculaYPrimerCaracterMayuscula(tipo);
 					
 					if (row.getCell(13).getCellType() == HSSFCell.CELL_TYPE_NUMERIC) {
 						ciclo = String.valueOf((int) row.getCell(13).getNumericCellValue()).trim();
-
 					} else {
 						ciclo = row.getCell(13).getStringCellValue();
 					}
@@ -572,23 +573,23 @@ public class ExcelModel {
 
 					int insertados = modelAlumno.insertaAcademico(a);
 					if (insertados == -1) {
-						log.info("NO existe carrera -->" + fila);
+						System.out.println("NO existe carrera -->" + fila);
 					}
 
 				}
 				if (fila % 10000 == 0) {
-					log.info("fila--> " + fila);
+					System.out.println("fila--> " + fila);
 				}
 
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			log.info(e.getMessage());
+			System.out.println(e.getMessage());
 		}
 	}
 
 	public void cargaMatricula(String file) {
-		log.info("En Carga Matrícula");
+		System.out.println("En Carga Matrícula");
 		GeneralModel modelMatricula = new GeneralModel();
 		int fila = 0;
 		try {
@@ -612,7 +613,13 @@ public class ExcelModel {
 						idAlumno = row.getCell(0).getStringCellValue();
 					}
 
-					idCurso = row.getCell(2).getStringCellValue();
+					if (row.getCell(2).getCellType() == HSSFCell.CELL_TYPE_NUMERIC) {
+						idCurso = String.valueOf((int) row.getCell(2).getNumericCellValue()).trim();
+
+					} else {
+						idCurso = row.getCell(2).getStringCellValue();
+					}
+		
 					seccion = row.getCell(3).getStringCellValue();
 
 					if (row.getCell(4).getCellType() == HSSFCell.CELL_TYPE_NUMERIC) {
@@ -640,24 +647,26 @@ public class ExcelModel {
 					c.setModalidad(modalidad);
 					c.setTipoclase(tipoclase);
 
-					log.info("fila--> " + c.getIdAlumno());
+					//System.out.println();
+					//System.out.println("fila--> " + c.getIdAlumno());
 
 					int s = modelMatricula.insertaVerificacionMatricula(c);
 					if (s == -2) {
-						log.info("No tiene Horario " + s + "  -->" + fila);
+						System.out.println("No tiene Horario " + s + "  -->" + fila);
 					}
 				}
-				if (fila % 10000 == 0) {
-					log.info("fila--> " + fila);
-				}
-				if (fila == 201739) {
-					log.info("fila--> " + fila + "Finalizado");
+				/*if (fila % 10000 == 0) {
+					System.out.println("fila--> " + fila);
+				}*
+				/*if (fila == 201739) {
+					System.out.println("fila--> " + fila + "Finalizado");
 					break;
-				}
+				}*/
 
 			}
 		} catch (Exception e) {
-			log.info(e.getMessage());
+			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 	}
 
@@ -736,19 +745,19 @@ public class ExcelModel {
 
 					int insertados = modelHorario.insertaHorario(h);
 					if (insertados == -2) {
-						log.info("No encontro docente: " + fila);
+						System.out.println ("No encontro docente: " + fila);
 					} else if (insertados == -3) {
-						log.info("No encontró sede : " + fila);
+						System.out.println("No encontró sede : " + fila);
 					} else if (insertados == -4) {
-						log.info("No encontró encuesta : " + fila);
+						System.out.println("No encontró encuesta : " + fila);
 					} else if (insertados == -5) {
-						log.info("No existe fila : " + fila);
+						System.out.println("No existe fila : " + fila);
 					}
 
 				}
 			}
 		} catch (Exception e) {
-			log.info(e.getMessage());
+			System.out.println(e.getMessage());
 			e.printStackTrace();
 			
 		}
@@ -785,13 +794,13 @@ public class ExcelModel {
 
 					int insertados = modelDocente.insertaVerificacionDocente(d);
 					if (insertados < 1) {
-						log.info("No se insertó Docente verifica excel en la fila: " + fila);
+						System.out.println("No se insertó Docente verifica excel en la fila: " + fila);
 					}
 
 				}
 			}
 		} catch (Exception e) {
-			log.info(e.getMessage());
+			System.out.println(e.getMessage());
 		}
 	}
 
@@ -832,14 +841,14 @@ public class ExcelModel {
 					int insertados = modelCurso.insertaVerificacionCurso(c);
 
 					if (insertados < 1) {
-						log.info("No se insertó Docente verifica excel en la fila: " + fila);
+						System.out.println("No se insertó Docente verifica excel en la fila: " + fila);
 					}
 
 				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			log.info(e.getMessage());
+			System.out.println(e.getMessage());
 		}
 
 	}
