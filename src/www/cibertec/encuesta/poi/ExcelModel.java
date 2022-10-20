@@ -399,7 +399,8 @@ public class ExcelModel {
 			XSSFWorkbook excel = new XSSFWorkbook(fis);
 			XSSFSheet hojaVendedores = excel.getSheetAt(0);
 			Iterator<Row> rowIterator = hojaVendedores.iterator();
-
+			
+			ArrayList<Alumno> lstAlumnos = new ArrayList<Alumno>();
 			String idAlumno, escuela, familia, codCurso, nomCurso, seccion, modalidad, campana, dni, campus;
 			while (rowIterator.hasNext()) {
 				XSSFRow row = (XSSFRow) rowIterator.next();
@@ -428,7 +429,11 @@ public class ExcelModel {
 					nomCurso = JLibreria.eliminaDobleEspaciosYEspaciosAntesYDespues(nomCurso);
 					nomCurso = JLibreria.toMinusculaYPrimerCaracterMayuscula(nomCurso);
 					
-					seccion = row.getCell(5).getStringCellValue();
+					if (row.getCell(5).getCellType() == HSSFCell.CELL_TYPE_NUMERIC) {
+						seccion = String.valueOf((int) row.getCell(5).getNumericCellValue()).trim();
+					} else {
+						seccion = row.getCell(5).getStringCellValue();
+					}
 					
 					modalidad = row.getCell(6).getStringCellValue();
 					modalidad = JLibreria.toMinusculaYPrimerCaracterMayuscula(modalidad);
@@ -475,16 +480,24 @@ public class ExcelModel {
 					a.setDni(dni);
 					a.setSeccion(seccion);
 					a.setCampus(campus);
-
-					int insertados = modelAlumno.insertaExtension(a);
-					if (insertados == -2) {
-						System.out.println("Ya existe -->" + fila);
-					}
+					
+					lstAlumnos.add(a);
+					
+					
 				}
 				if (fila % 10000 == 0) {
 					System.out.println("fila--> " + fila);
 				}
 			}
+			
+			for (Alumno alumno : lstAlumnos) {
+				int insertados = modelAlumno.insertaExtension(alumno);
+				if (insertados == -2) {
+					System.out.println("Ya existe -->" + (lstAlumnos.indexOf(alumno)) +" --> " + alumno.getIdAlumno());
+				}	
+			}
+			
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println(e.getMessage());

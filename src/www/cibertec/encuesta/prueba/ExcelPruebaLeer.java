@@ -21,28 +21,34 @@ public class ExcelPruebaLeer {
 //			System.out.println(mensaje);
 //		}
 //
-//		modelExcel.cargaCarrera("Formato_Academico_Alumno_AC_20221.xlsx");
-//		modelExcel.cargaCarrera("Formato_Academico_Alumno_SP_20221.xlsx");
-//		modelExcel.cargaCarrera("Formato_Academico_Alumno_WS_20221.xlsx");
+//		modelExcel.cargaCarrera("info_alumnos_AC_20222.xlsx");
+//		modelExcel.cargaCarrera("info_alumnos_EA_20222.xlsx");
+//		modelExcel.cargaCarrera("info_alumnos_MVT_20222.xlsx");
+//		modelExcel.cargaCarrera("info_alumnos_SP_20222.xlsx");
+//		modelExcel.cargaCarrera("info_alumnos_WS_20222.xlsx");
 //		
-//		modelExcel.cargaCurso("Formato_Academico_Docentes_20221.xlsx");
-//		modelExcel.cargaDocente("Formato_Academico_Docentes_20221.xlsx");
-//		modelExcel.cargaHorario("Formato_Academico_Docentes_20221.xlsx");
+//		modelExcel.cargaCurso("Info_docente_20222.xlsx");
+//		modelExcel.cargaDocente("Info_docente_20222.xlsx");
+//		modelExcel.cargaHorario("Info_docente_20222.xlsx");
 //		
-//		modelExcel.cargaAlumoAcademico("Formato_Academico_Alumno_AC_20221.xlsx");
-//		modelExcel.cargaAlumoAcademico("Formato_Academico_Alumno_SP_20221.xlsx");
-//		modelExcel.cargaAlumoAcademico("Formato_Academico_Alumno_WS_20221.xlsx");
-
+//		modelExcel.cargaAlumoAcademico("info_alumnos_AC_20222.xlsx");
+//		modelExcel.cargaAlumoAcademico("info_alumnos_EA_20222.xlsx");
+//		modelExcel.cargaAlumoAcademico("info_alumnos_MVT_20222.xlsx");
+//		modelExcel.cargaAlumoAcademico("info_alumnos_SP_20222.xlsx");
+//		modelExcel.cargaAlumoAcademico("info_alumnos_WS_20222.xlsx");
 		
-//		modelExcel.cargaMatricula("Formato_Academico_Alumno_AC_20221.xlsx");
-//		modelExcel.cargaMatricula("Formato_Academico_Alumno_SP_20221.xlsx");
-//		modelExcel.cargaMatricula("Formato_Academico_Alumno_WS_20221.xlsx");
+//		modelExcel.cargaMatricula("info_alumnos_AC_20222.xlsx");
+//		modelExcel.cargaMatricula("info_alumnos_EA_20222.xlsx");
+//		modelExcel.cargaMatricula("info_alumnos_MVT_20222.xlsx");
+//		modelExcel.cargaMatricula("info_alumnos_SP_20222.xlsx");
+//		modelExcel.cargaMatricula("info_alumnos_WS_20222.xlsx");
 		
-//		modelExcel.cargaAlumoExtension("Formato_Extension_20212.xlsx");
+		
+		modelExcel.cargaAlumoExtension("Formato_Extension_20222_vs2.xlsx");
 		
 		//modelExcel.cargaHorario("Formato_Academico_Docentes_20221_extra2.xlsx");
 		//modelExcel.cargaAlumoAcademico("Formato_Academico_Alumno_AC_20221_extra2.xlsx");
-		modelExcel.cargaMatricula("Formato_Academico_Alumno_AC_20221_extra2.xlsx");
+		//modelExcel.cargaMatricula("Formato_Academico_Alumno_AC_20221_extra2.xlsx");
 	}
 
 }
