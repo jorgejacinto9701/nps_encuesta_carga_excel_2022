@@ -317,16 +317,52 @@ public class GeneralModel {
 			List<Integer> lista = buscaHorariosVarios(bean);
 			for (Integer x : lista) {
 				bean.setIdHorario(x);
-				contador = insertaMatricula(bean);
+				if ( existeMatricula(x, bean.getIdAlumno())==0) {
+					contador = insertaMatricula(bean);	
+				}
+				
 			}
 		} else if (ch == 1) {
 			int idHorario = buscaHorariosUnico(bean);
 			bean.setIdHorario(idHorario);
-			contador = insertaMatricula(bean);
+			
+			if ( existeMatricula(idHorario, bean.getIdAlumno())==0) {
+				contador = insertaMatricula(bean);
+			}
+			
+			
 		}
 		return contador;
 	}
 
+	public int existeMatricula(int idHorario, String idAlumno) {
+		Connection conn = null;
+		PreparedStatement pstm = null;
+		ResultSet rs = null;
+		try {
+			conn = ConexionDB.getConexion();
+			String sql = "select count(*) from matricula where idhorario = ? and idalumno =?";
+			pstm = conn.prepareStatement(sql);
+			pstm.setInt(1, idHorario);
+			pstm.setString(2, idAlumno);
+			// log.info(pstm);
+			rs = pstm.executeQuery();
+			if (rs.next()) {
+				return rs.getInt(1);
+			}
+		} catch (Exception e) {
+			log.info(e.getMessage());
+		} finally {
+			try {
+				rs.close();
+				pstm.close();
+				conn.close();
+			} catch (SQLException e) {
+			}
+		}
+		return -1;
+	}
+	
 	public String existeSede(String nombre) {
 		Connection conn = null;
 		PreparedStatement pstm = null;
@@ -645,7 +681,7 @@ public class GeneralModel {
 			pstm.setString(3, bean.getGrupo());
 			pstm.setString(4, bean.getModalidad());
 			pstm.setString(5, bean.getTipoclase());
-			System.out.println(pstm);
+			//System.out.println(pstm);
 			rs = pstm.executeQuery();
 			if (rs.next()) {
 				return rs.getInt(1);
