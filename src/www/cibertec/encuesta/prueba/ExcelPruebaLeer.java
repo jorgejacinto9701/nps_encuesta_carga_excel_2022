@@ -21,30 +21,28 @@ public class ExcelPruebaLeer {
 //			System.out.println(mensaje);
 //		}
 //
-//		modelExcel.cargaCarrera("info_alumnos_AC_20222.xlsx");
-//		modelExcel.cargaCarrera("info_alumnos_EA_20222.xlsx");
-//		modelExcel.cargaCarrera("info_alumnos_MVT_20222.xlsx");
-//		modelExcel.cargaCarrera("info_alumnos_SP_20222.xlsx");
-//		modelExcel.cargaCarrera("info_alumnos_WS_20222.xlsx");
+//		modelExcel.cargaCarrera("Info_alumnos_2023_1_AC.xlsx");
+//		modelExcel.cargaCarrera("Info_alumnos_2023_1_EA.xlsx");
+//		modelExcel.cargaCarrera("Info_alumnos_2023_1_SP.xlsx");
+//		modelExcel.cargaCarrera("Info_alumnos_2023_1_WS.xlsx");
 //		
-//		modelExcel.cargaCurso("Info_docente_20222.xlsx");
-//		modelExcel.cargaDocente("Info_docente_20222.xlsx");
-//		modelExcel.cargaHorario("Info_docente_20222_v2.xlsx");
+//		modelExcel.cargaCurso("Info_docentes_2023_1_completo.xlsx");
+//		modelExcel.cargaDocente("Info_docentes_2023_1_completo.xlsx");
+//		modelExcel.cargaHorario("Info_docentes_2023_1_completo.xlsx");
 //		
-//		modelExcel.cargaAlumoAcademico("info_alumnos_AC_20222.xlsx");
-//		modelExcel.cargaAlumoAcademico("info_alumnos_EA_20222.xlsx");
-//		modelExcel.cargaAlumoAcademico("info_alumnos_MVT_20222.xlsx");
-//		modelExcel.cargaAlumoAcademico("info_alumnos_SP_20222.xlsx");
-//		modelExcel.cargaAlumoAcademico("info_alumnos_WS_20222.xlsx");
-		
-//		modelExcel.cargaMatricula("info_alumnos_AC_20222.xlsx");
-//		modelExcel.cargaMatricula("info_alumnos_EA_20222.xlsx");
-//		modelExcel.cargaMatricula("info_alumnos_MVT_20222.xlsx");
-//		modelExcel.cargaMatricula("info_alumnos_SP_20222.xlsx");
-//		modelExcel.cargaMatricula("info_alumnos_WS_20222.xlsx");
+//		modelExcel.cargaAlumoAcademico("Info_alumnos_2023_1_AC.xlsx");
+//		modelExcel.cargaAlumoAcademico("Info_alumnos_2023_1_EA.xlsx");
+//		modelExcel.cargaAlumoAcademico("Info_alumnos_2023_1_SP.xlsx");
+//		modelExcel.cargaAlumoAcademico("Info_alumnos_2023_1_WS.xlsx");
+//		
+//		modelExcel.cargaMatricula("Info_alumnos_2023_1_AC.xlsx");
+//		modelExcel.cargaMatricula("Info_alumnos_2023_1_EA.xlsx");
+//		modelExcel.cargaMatricula("Info_alumnos_2023_1_SP.xlsx");
+
+		modelExcel.cargaMatricula("Info_alumnos_2023_1_AC_extras.xlsx");
 		
 		//modelExcel.cargaAlumoAcademico("info_alumnos_extra_2.xlsx");
-		modelExcel.cargaMatricula("info_alumnos_extra_2.xlsx");
+		//modelExcel.cargaMatricula("info_alumnos_extra_2.xlsx");
 		
 		
 		

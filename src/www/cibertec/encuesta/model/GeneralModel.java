@@ -681,7 +681,7 @@ public class GeneralModel {
 			pstm.setString(3, bean.getGrupo());
 			pstm.setString(4, bean.getModalidad());
 			pstm.setString(5, bean.getTipoclase());
-			//System.out.println(pstm);
+			System.out.println(pstm);
 			rs = pstm.executeQuery();
 			if (rs.next()) {
 				return rs.getInt(1);
